@@ -24,5 +24,4 @@ fn fragment(
     outline = min(outline, 1.0);
     var color : vec4<f32> = textureSample(base_color_texture, base_color_sampler,uv);
     return mix(color, material.color, outline - color.a);
-    //return material.color * textureSample(base_color_texture, base_color_sampler,uv);
 }
