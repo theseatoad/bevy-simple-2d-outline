@@ -19,5 +19,5 @@ bevy = { version = "0.9.0", default-features = false, features = [
 ] }
 
 [[example]]
-name = "custom-material"
-path = "examples/custom-material.rs"
+name = "outline"
+path = "examples/outline.rs"

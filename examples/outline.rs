@@ -7,11 +7,12 @@ use bevy::{
     sprite::{Material2d, Material2dPlugin, MaterialMesh2dBundle},
     utils::default,
 };
+use bevy_simple_2d_outline::OutlineAndTextureMaterial;
 
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins.set(ImagePlugin::default_nearest()))
-        .add_plugin(Material2dPlugin::<CustomMaterial>::default())
+        .add_plugin(Material2dPlugin::<OutlineAndTextureMaterial>::default())
         .add_startup_system(setup)
         .run();
 }
@@ -19,33 +20,18 @@ fn main() {
 fn setup(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
-    mut materials: ResMut<Assets<CustomMaterial>>,
+    mut materials: ResMut<Assets<OutlineAndTextureMaterial>>,
     asset_server: Res<AssetServer>,
 ) {
     commands.spawn(MaterialMesh2dBundle {
         mesh: meshes.add(Mesh::from(shape::Quad::default())).into(),
         transform: Transform::default().with_scale(Vec3::splat(128.)),
-        material: materials.add(CustomMaterial {
+        material: materials.add(OutlineAndTextureMaterial {
             color: Color::BLUE,
-            color_texture: Some(asset_server.load("textures/sprite_seatoad.png")),
+            color_texture: asset_server.load("textures/sprite_seatoad.png"),
         }),
         ..default()
     });
 
     commands.spawn(Camera2dBundle::default());
-}
-
-impl Material2d for CustomMaterial {
-    fn fragment_shader() -> ShaderRef {
-        "shaders/custom_material.wgsl".into()
-    }
-}
-#[derive(AsBindGroup, TypeUuid, Debug, Clone)]
-#[uuid = "f690fdae-d598-45ab-8225-97e2a3f056e0"]
-pub struct CustomMaterial {
-    #[uniform(0)]
-    pub color: Color,
-    #[texture(1)]
-    #[sampler(2)]
-    pub color_texture: Option<Handle<Image>>,
 }
