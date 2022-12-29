@@ -15,9 +15,14 @@ bevy = { version = "0.9.0", default-features = false, features = [
     "bevy_render",
     "bevy_asset",
     "render",
-    "png"
+    "png",
+    "bevy_pbr"
 ] }
 
 [[example]]
 name = "outline"
 path = "examples/outline.rs"
+
+[[example]]
+name = "rainbow"
+path = "examples/rainbow.rs"
