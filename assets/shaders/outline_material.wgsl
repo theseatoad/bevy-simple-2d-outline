@@ -1,9 +1,9 @@
-struct OutlineAndTextureMaterial {
+struct OutlineMaterial {
     color: vec4<f32>,
     thickness : f32
 };
 @group(1) @binding(0)
-var<uniform> material: OutlineAndTextureMaterial;
+var<uniform> material: OutlineMaterial;
 @group(1) @binding(1)
 var base_color_texture: texture_2d<f32>;
 @group(1) @binding(2)
@@ -24,5 +24,5 @@ fn fragment(
     outline += textureSample(base_color_texture, base_color_sampler,uv + vec2<f32>(-material.thickness,-material.thickness)).a;
     outline = min(outline, 1.0);
     var color : vec4<f32> = textureSample(base_color_texture, base_color_sampler,uv);
-    return mix(color, material.color, outline - color.a);
+    return mix(color, material.color, outline - color.a) - color;
 }

@@ -10,13 +10,13 @@ use bevy::{
     sprite::{Material2d, Material2dPlugin, MaterialMesh2dBundle},
     utils::default,
 };
-use bevy_simple_2d_outline::OutlineMaterial;
+use bevy_simple_2d_outline::{RainbowOutlineAndTextureMaterial};
 
 fn main() {
     App::new()
         .insert_resource(ClearColor(Color::rgb(0.0, 0.0, 0.0)))
         .add_plugins(DefaultPlugins.set(ImagePlugin::default_nearest()))
-        .add_plugin(Material2dPlugin::<OutlineMaterial>::default())
+        .add_plugin(Material2dPlugin::<RainbowOutlineAndTextureMaterial>::default())
         .add_startup_system(setup)
         .run();
 }
@@ -24,15 +24,15 @@ fn main() {
 fn setup(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
-    mut materials: ResMut<Assets<OutlineMaterial>>,
+    mut materials: ResMut<Assets<RainbowOutlineAndTextureMaterial>>,
     asset_server: Res<AssetServer>,
 ) {
     commands.spawn(MaterialMesh2dBundle {
         mesh: meshes.add(Mesh::from(shape::Quad::default())).into(),
         transform: Transform::default().with_scale(Vec3::splat(128.)),
-        material: materials.add(OutlineMaterial {
-            color: Color::BLUE,
+        material: materials.add(RainbowOutlineAndTextureMaterial {
             thickness : 0.01,
+            frequency : 1.0,
             texture: asset_server.load("textures/sprite_seatoad.png"),
         }),
         ..default()

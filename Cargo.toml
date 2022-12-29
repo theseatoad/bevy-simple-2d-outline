@@ -14,15 +14,21 @@ bevy = { version = "0.9.0", default-features = false, features = [
     "bevy_sprite",
     "bevy_render",
     "bevy_asset",
-    "render",
-    "png",
-    "bevy_pbr"
+    "bevy_pbr",
+    "png"
 ] }
-
 [[example]]
 name = "outline"
 path = "examples/outline.rs"
 
 [[example]]
-name = "rainbow"
-path = "examples/rainbow.rs"
+name = "outline_and_texture"
+path = "examples/outline_and_texture.rs"
+
+[[example]]
+name = "rainbow_outline"
+path = "examples/rainbow_outline.rs"
+
+[[example]]
+name = "rainbow_outline_and_texture"
+path = "examples/rainbow_outline_and_texture.rs"

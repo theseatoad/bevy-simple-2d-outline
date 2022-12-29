@@ -1,9 +1,10 @@
-struct OutlineAndTextureMaterial {
-    color: vec4<f32>,
-    thickness : f32
+#import bevy_sprite::mesh2d_view_bindings
+struct RainbowOutlineMaterial {
+    thickness : f32,
+    frequency : f32,
 };
 @group(1) @binding(0)
-var<uniform> material: OutlineAndTextureMaterial;
+var<uniform> material: RainbowOutlineMaterial;
 @group(1) @binding(1)
 var base_color_texture: texture_2d<f32>;
 @group(1) @binding(2)
@@ -23,6 +24,10 @@ fn fragment(
     outline += textureSample(base_color_texture, base_color_sampler,uv + vec2<f32>(material.thickness,material.thickness)).a;
     outline += textureSample(base_color_texture, base_color_sampler,uv + vec2<f32>(-material.thickness,-material.thickness)).a;
     outline = min(outline, 1.0);
+    var animated_line_color : vec4<f32> = vec4(sin(globals.time * material.frequency),
+							   sin(globals.time * material.frequency + radians(120.0)),
+							   sin(globals.time * material.frequency + radians(240.0)),
+							   1.0);
     var color : vec4<f32> = textureSample(base_color_texture, base_color_sampler,uv);
-    return mix(color, material.color, outline - color.a);
+    return mix(color, animated_line_color, outline - color.a) - color;
 }
