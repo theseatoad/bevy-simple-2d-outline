@@ -2,13 +2,16 @@
 name = "bevy_simple_2d_outline"
 version = "0.1.0"
 edition = "2021"
-description = "A simple 2d outline shader for Bevy"
-categories = ["graphics","rendering"]
+description = "2D outline materials for the bevy game engine"
+keywords = ["shaders","2d", "bevy", "wgsl"]
+categories = ["shaders","2d", "bevy", "wgsl"]
 license = "MIT OR Apache-2.0"
 readme = "README.md"
+repository = "https://github.com/theseatoad/bevy-simple-2d-outline"
+homepage = "https://github.com/theseatoad/bevy-simple-2d-outline"
 
 [dependencies]
-bevy = { version = "0.9.0", default-features = false, features = [
+bevy = { version = "0.9.0", git = "https://github.com/bevyengine/bevy", default-features = false, features = [
     "bevy_core_pipeline",
     "bevy_winit",
     "bevy_sprite",
