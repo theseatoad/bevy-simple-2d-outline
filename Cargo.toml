@@ -18,7 +18,8 @@ bevy = { version = "0.9.0", git = "https://github.com/bevyengine/bevy", default-
     "bevy_render",
     "bevy_asset",
     "bevy_pbr",
-    "png"
+    "png",
+    "x11"
 ] }
 [[example]]
 name = "outline"
