@@ -1,6 +1,6 @@
 [package]
 name = "bevy_simple_2d_outline"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "2D outline materials for the bevy game engine"
 keywords = ["shaders","2d", "bevy", "wgsl"]
