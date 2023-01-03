@@ -1,5 +1,7 @@
 # WGSL 2d Outline Shader
 [![Bevy tracking](https://img.shields.io/badge/Bevy%20tracking-released%20version-lightblue)](https://github.com/bevyengine/bevy/blob/main/docs/plugins_guidelines.md#main-branch-tracking)
+[![crates.io](https://img.shields.io/crates/v/bevy_simple_2d_outline)](https://crates.io/crates/bevy_simple_2d_outline)
+[![docs.rs](https://docs.rs/bevy_simple_2d_outline/badge.svg)](https://docs.rs/bevy_simple_2d_outline)
 
 2D outline materials written in wgsl for the bevy game engine.
 
