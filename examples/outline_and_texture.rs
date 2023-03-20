@@ -29,7 +29,7 @@ fn setup(
 ) {
     commands.spawn(MaterialMesh2dBundle {
         mesh: meshes.add(Mesh::from(shape::Quad::default())).into(),
-        transform: Transform::default().with_scale(Vec3::splat(128.)),
+        transform: Transform::default().with_scale(Vec3::splat(500.)),
         material: materials.add(OutlineAndTextureMaterial {
             color: Color::BLUE,
             thickness : 0.01,
