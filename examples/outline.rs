@@ -14,10 +14,12 @@ use bevy_simple_2d_outline::OutlineMaterial;
 
 fn main() {
     App::new()
+        .add_systems(Startup, setup)
         .insert_resource(ClearColor(Color::rgb(0.0, 0.0, 0.0)))
-        .add_plugins(DefaultPlugins.set(ImagePlugin::default_nearest()))
-        .add_plugin(Material2dPlugin::<OutlineMaterial>::default())
-        .add_startup_system(setup)
+        .add_plugins((
+            DefaultPlugins.set(ImagePlugin::default_nearest()),
+            Material2dPlugin::<OutlineMaterial>::default()
+        ))
         .run();
 }
 

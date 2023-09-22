@@ -1,6 +1,6 @@
 //! 2D outline materials written in wgsl for the bevy game engine.
 use bevy::{
-    reflect::TypeUuid,
+    reflect::{TypeUuid, TypePath},
     render::render_resource::{AsBindGroup, ShaderRef},
     sprite::Material2d,
 };
@@ -37,7 +37,7 @@ use bevy::prelude::*;
 ///    commands.spawn(Camera2dBundle::default());
 ///}
 ///```
-#[derive(AsBindGroup, TypeUuid, Debug, Clone)]
+#[derive(AsBindGroup, TypePath, TypeUuid, Debug, Clone)]
 #[uuid = "e129fdae-d598-45ac-8225-97e2a3f056e0"]
 pub struct OutlineMaterial {
     /// The color of the outline.
@@ -89,7 +89,7 @@ impl Material2d for OutlineMaterial {
 ///    commands.spawn(Camera2dBundle::default());
 ///}
 ///```
-#[derive(AsBindGroup, TypeUuid, Debug, Clone)]
+#[derive(AsBindGroup, TypeUuid, TypePath, Debug, Clone)]
 #[uuid = "a139fdae-d598-45ac-8225-97e2a3f056e0"]
 pub struct OutlineAndTextureMaterial {
     /// The color of the outline.
@@ -140,7 +140,7 @@ impl Material2d for OutlineAndTextureMaterial {
 ///     commands.spawn(Camera2dBundle::default());
 /// }
 ///```
-#[derive(AsBindGroup, TypeUuid, Debug, Clone)]
+#[derive(AsBindGroup, TypeUuid, TypePath, Debug, Clone)]
 #[uuid = "f229fdae-d598-45ac-8225-97e2a3f011e0"]
 pub struct RainbowOutlineMaterial {
     /// The thickness of the outline. Preferred values between 0.01 and 0.005.
@@ -191,7 +191,7 @@ impl Material2d for RainbowOutlineMaterial {
 ///     commands.spawn(Camera2dBundle::default());
 /// }
 ///```
-#[derive(AsBindGroup, TypeUuid, Debug, Clone)]
+#[derive(AsBindGroup, TypeUuid, TypePath, Debug, Clone)]
 #[uuid = "f339fdae-d598-45ac-8225-97e2a3f011e0"]
 pub struct RainbowOutlineAndTextureMaterial {
     /// The thickness of the outline. Preferred values between 0.01 and 0.005.
