@@ -1,4 +1,4 @@
-#import bevy_sprite::mesh2d_view_bindings
+#import bevy_sprite::mesh2d_view_bindings globals
 struct RainbowOutlineAndTextureMaterial {
     thickness : f32,
     frequency : f32,
@@ -10,19 +10,26 @@ var base_color_texture: texture_2d<f32>;
 @group(1) @binding(2)
 var base_color_sampler: sampler;
 
+fn get_sample(
+    probe: vec2<f32>
+) -> f32 {
+    return textureSample(base_color_texture, base_color_sampler, probe).a;
+}
+
+#import bevy_pbr::mesh_vertex_output MeshVertexOutput
 @fragment
 fn fragment(
-    #import bevy_pbr::mesh_vertex_output
-    @builtin(position) coord : vec4<f32>
-) -> @location(0) vec4<f32> {    
-    var outline : f32 = textureSample(base_color_texture, base_color_sampler,uv + vec2<f32>(material.thickness,0.0)).a;
-    outline += textureSample(base_color_texture, base_color_sampler,uv + vec2<f32>(-material.thickness,0.0)).a;
-    outline += textureSample(base_color_texture, base_color_sampler,uv + vec2<f32>(0.0,material.thickness)).a;
-    outline += textureSample(base_color_texture, base_color_sampler,uv + vec2<f32>(0.0,-material.thickness)).a;
-    outline += textureSample(base_color_texture, base_color_sampler,uv + vec2<f32>(material.thickness,-material.thickness)).a;
-    outline += textureSample(base_color_texture, base_color_sampler,uv + vec2<f32>(-material.thickness,material.thickness)).a;
-    outline += textureSample(base_color_texture, base_color_sampler,uv + vec2<f32>(material.thickness,material.thickness)).a;
-    outline += textureSample(base_color_texture, base_color_sampler,uv + vec2<f32>(-material.thickness,-material.thickness)).a;
+    in: MeshVertexOutput,
+) -> @location(0) vec4<f32> {
+    var uv = in.uv;
+    var outline : f32 = get_sample(uv + vec2<f32>(material.thickness,0.0));
+    outline += get_sample(uv + vec2<f32>(-material.thickness,0.0));
+    outline += get_sample(uv + vec2<f32>(0.0,material.thickness));
+    outline += get_sample(uv + vec2<f32>(0.0,-material.thickness));
+    outline += get_sample(uv + vec2<f32>(material.thickness,-material.thickness));
+    outline += get_sample(uv + vec2<f32>(-material.thickness,material.thickness));
+    outline += get_sample(uv + vec2<f32>(material.thickness,material.thickness));
+    outline += get_sample(uv + vec2<f32>(-material.thickness,-material.thickness));
     outline = min(outline, 1.0);
     var animated_line_color : vec4<f32> = vec4(sin(globals.time * material.frequency),
 							   sin(globals.time * material.frequency + radians(120.0)),

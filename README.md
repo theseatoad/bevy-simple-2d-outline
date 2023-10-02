@@ -37,3 +37,11 @@ $ cargo run --example rainbow_outline
 ```bash
 $ cargo run --example rainbow_outline_and_texture
 ```
+
+## Compatibility
+
+| Bevy | `bevy-simple-2d-outline` |
+| ---- |--------------------------|
+| 0.11 | 0.2.11                   |
+| 0.10 | 0.2.0                    |
+
