@@ -1,4 +1,4 @@
-#import bevy_sprite::mesh2d_view_bindings globals
+#import bevy_sprite::mesh2d_view_bindings::globals
 struct RainbowOutlineMaterial {
     thickness : f32,
     frequency : f32,
@@ -16,10 +16,10 @@ fn get_sample(
     return textureSample(base_color_texture, base_color_sampler, probe).a;
 }
 
-#import bevy_pbr::mesh_vertex_output MeshVertexOutput
+#import bevy_pbr::forward_io::VertexOutput
 @fragment
 fn fragment(
-    in: MeshVertexOutput,
+    in: VertexOutput,
 ) -> @location(0) vec4<f32> {
     var uv = in.uv;
     var outline : f32 = get_sample(uv + vec2<f32>(material.thickness,0.0));
