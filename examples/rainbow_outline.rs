@@ -5,7 +5,6 @@
 use bevy::{
     asset::{AssetServer, Assets},
     prelude::*,
-    reflect::TypeUuid,
     render::render_resource::{AsBindGroup, ShaderRef},
     sprite::{Material2d, Material2dPlugin, MaterialMesh2dBundle},
     utils::default,
@@ -30,7 +29,7 @@ fn setup(
     asset_server: Res<AssetServer>,
 ) {
     commands.spawn(MaterialMesh2dBundle {
-        mesh: meshes.add(Mesh::from(shape::Quad::default())).into(),
+        mesh: meshes.add(Rectangle::default()).into(),
         transform: Transform::default().with_scale(Vec3::splat(128.)),
         material: materials.add(RainbowOutlineMaterial {
             thickness : 0.01,

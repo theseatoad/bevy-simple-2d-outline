@@ -1,7 +1,7 @@
 //! 2D outline materials written in wgsl for the bevy game engine.
 use bevy::prelude::*;
 use bevy::{
-    reflect::{TypePath, TypeUuid},
+    reflect::{TypePath},
     render::render_resource::{AsBindGroup, ShaderRef},
     sprite::Material2d,
 };
@@ -24,7 +24,7 @@ use bevy::{
 ///    asset_server: Res<AssetServer>,
 ///) {
 ///    commands.spawn(MaterialMesh2dBundle {
-///        mesh: meshes.add(Mesh::from(shape::Quad::default())).into(),
+///        mesh: meshes.add(Rectangle::default()).into(),
 ///        transform: Transform::default().with_scale(Vec3::splat(128.)),
 ///        material: materials.add(OutlineMaterial {
 ///            color: Color::BLUE,
@@ -37,8 +37,7 @@ use bevy::{
 ///    commands.spawn(Camera2dBundle::default());
 ///}
 ///```
-#[derive(AsBindGroup, TypePath, Asset, TypeUuid, Debug, Clone)]
-#[uuid = "e129fdae-d598-45ac-8225-97e2a3f056e0"]
+#[derive(AsBindGroup, TypePath, Asset, Debug, Clone)]
 pub struct OutlineMaterial {
     /// The color of the outline.
     #[uniform(0)]
@@ -76,7 +75,7 @@ impl Material2d for OutlineMaterial {
 ///    asset_server: Res<AssetServer>,
 ///) {
 ///    commands.spawn(MaterialMesh2dBundle {
-///        mesh: meshes.add(Mesh::from(shape::Quad::default())).into(),
+///        mesh: meshes.add(Rectangle::default()).into(),
 ///        transform: Transform::default().with_scale(Vec3::splat(128.)),
 ///        material: materials.add(OutlineAndTextureMaterial {
 ///            color: Color::BLUE,
@@ -89,8 +88,7 @@ impl Material2d for OutlineMaterial {
 ///    commands.spawn(Camera2dBundle::default());
 ///}
 ///```
-#[derive(AsBindGroup, TypeUuid, Asset, TypePath, Debug, Clone)]
-#[uuid = "a139fdae-d598-45ac-8225-97e2a3f056e0"]
+#[derive(AsBindGroup, Asset, TypePath, Debug, Clone)]
 pub struct OutlineAndTextureMaterial {
     /// The color of the outline.
     #[uniform(0)]
@@ -127,7 +125,7 @@ impl Material2d for OutlineAndTextureMaterial {
 ///     asset_server: Res<AssetServer>,
 /// ) {
 ///     commands.spawn(MaterialMesh2dBundle {
-///         mesh: meshes.add(Mesh::from(shape::Quad::default())).into(),
+///         mesh: meshes.add(Rectangle::default()).into(),
 ///         transform: Transform::default().with_scale(Vec3::splat(128.)),
 ///         material: materials.add(RainbowOutlineMaterial {
 ///            thickness : 0.01,
@@ -140,8 +138,7 @@ impl Material2d for OutlineAndTextureMaterial {
 ///     commands.spawn(Camera2dBundle::default());
 /// }
 ///```
-#[derive(AsBindGroup, TypeUuid, Asset, TypePath, Debug, Clone)]
-#[uuid = "f229fdae-d598-45ac-8225-97e2a3f011e0"]
+#[derive(AsBindGroup, Asset, TypePath, Debug, Clone)]
 pub struct RainbowOutlineMaterial {
     /// The thickness of the outline. Preferred values between 0.01 and 0.005.
     #[uniform(0)]
@@ -178,7 +175,7 @@ impl Material2d for RainbowOutlineMaterial {
 ///     asset_server: Res<AssetServer>,
 /// ) {
 ///     commands.spawn(MaterialMesh2dBundle {
-///         mesh: meshes.add(Mesh::from(shape::Quad::default())).into(),
+///         mesh: meshes.add(Rectangle::default()).into(),
 ///         transform: Transform::default().with_scale(Vec3::splat(128.)),
 ///         material: materials.add(RainbowOutlineAndTextureMaterial {
 ///            thickness : 0.01,
@@ -191,8 +188,7 @@ impl Material2d for RainbowOutlineMaterial {
 ///     commands.spawn(Camera2dBundle::default());
 /// }
 ///```
-#[derive(AsBindGroup, TypeUuid, Asset, TypePath, Debug, Clone)]
-#[uuid = "f339fdae-d598-45ac-8225-97e2a3f011e0"]
+#[derive(AsBindGroup, Asset, TypePath, Debug, Clone)]
 pub struct RainbowOutlineAndTextureMaterial {
     /// The thickness of the outline. Preferred values between 0.01 and 0.005.
     #[uniform(0)]
