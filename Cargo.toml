@@ -11,7 +11,7 @@ repository = "https://github.com/theseatoad/bevy-simple-2d-outline"
 homepage = "https://github.com/theseatoad/bevy-simple-2d-outline"
 
 [dependencies]
-bevy = { version = "0.12", default-features = false, features = [
+bevy = { version = "0.13", default-features = false, features = [
     "bevy_core_pipeline",
     "bevy_winit",
     "bevy_sprite",
